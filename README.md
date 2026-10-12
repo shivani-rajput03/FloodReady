@@ -1,113 +1,178 @@
-# FloodReady — Flood Disaster Management Mobile-First App
+# FloodReady
 
-**FloodReady** is a mobile-first, resilient web application designed to support citizens and responders during all three critical phases of flood disaster management: **Preparation**, **Active Flood Emergency**, and **Post-Disaster Recovery**.
+### Disaster Management & Emergency Preparedness Web Application
 
----
+FloodReady is a web application that brings disaster-preparedness
+information and emergency-support tools into one interface. It includes
+weather-based risk estimates, location and map views, safety guidance,
+preparedness checklists, community hazard reporting, and quick access to
+emergency-contact options.
 
-## 🛠️ Stack Choice & Architecture Rationale
-- **Framework**: React 19 + TypeScript + Vite (ultra-fast compilation, low bundle size, strong typing)
-- **Styling**: Tailwind CSS v4 (mobile ergonomically sized tap targets, high-contrast disaster palette, reduced motion support)
-- **Mapping**: Leaflet + React-Leaflet with OpenStreetMap tiles (lightweight, zero expensive proprietary API keys required, works smoothly on mobile browsers)
-- **Offline & Sound**: Native Web Audio API Synthesizer (instant hardware-grade siren sound generator and attention chimes without downloading external MP3 files), Web Vibration API, and persistent LocalStorage caching.
-- **Provider-Adapter Layer**: Modular hydrology & meteorological data abstraction separating official feeds (NDMA, IMD, CWC format) from live weather endpoints (Open-Meteo API) and offline demo modes.
+> **Safety notice:** FloodReady is a preparedness aid and project
+> demonstration, not an official emergency-alert or dispatch system.
+> Always follow current instructions from local authorities and contact
+> emergency services directly in an emergency.
 
----
+## Features
 
-## 🌟 Core Features & Modules
+-   **Real-Time Risk Dashboard:** Search for a location and review
+    weather information and an application-generated risk estimate.
+-   **360° Compass:** View weather samples in eight directions around
+    the selected location.
+-   **Interactive Map:** View the selected location and available map
+    markers.
+-   **Nearby Facilities:** Browse facility categories such as shelters,
+    hospitals, relief camps, equipment/pump points, and pharmacies.
+-   **Safety Protocols:** Review preparedness and safety guidance for
+    before, during, and after a flood.
+-   **Go-Bag & Family Check:** Track emergency supplies, medicines,
+    important documents, household needs, and pet supplies.
+-   **Hazard Reports:** Enter a hazard category, location, urgency, and
+    description, and view recorded reports.
+-   **Emergency SOS:** Access an acoustic siren control, emergency
+    helpline shortcuts, and a user-controlled emergency-message
+    workflow.
 
-### 1. Home Screen & Local Risk Intelligence
-- **Location Transparency**: Never claims to know your live position without permission. Supports explicit GPS access as well as private manual district/city selection.
-- **Risk Indicator & Explanation**: Displays local risk severity (**Low**, **Moderate**, **High**, **Critical**) with an expandable breakdown explaining the exact parameters (24h cumulative rainfall, river gauge stages, soil saturation, and dam spillway discharge).
-- **Official Attribution**: Every alert details its issuing body, issuance timestamp, geographical scope, limitations, and confidence rating.
+## Technology Stack
 
-### 2. High-Visibility Emergency SOS & Siren Beacon
-- **Acoustic Rescue Siren**: One-tap toggle generating a loud European/disaster warning warble (650Hz–1050Hz) and rhythmic mobile vibration for alerting nearby boats or search parties.
-- **One-Tap Direct Dialing**: Instant access to verified national numbers (`112` Emergency, `1078` NDRF HQ, `1070` State Disaster Management, `108` Ambulance, `101` Fire).
-- **Private "I'm Safe" / "I Need Help" SMS Dispatch**: Pre-drafts explicit status messages with GPS/district coordinates for emergency contacts. Never shares location automatically in the background without explicit user confirmation.
+-   React
+-   TypeScript
+-   Vite
+-   Open-Meteo forecast API for weather information
+-   OpenStreetMap-based map visualization
+-   npm for package management
 
-### 3. Nearby Facilities Directory (Local Demo Mode)
-- **Categorized Services**: Relief camps, hospitals, emergency trauma wings, municipal sandbag/pump depots, and 24/7 pharmacies.
-- **Demo Transparency**: The classroom-demo directory generates clearly labelled fictional points around the selected coordinates. It does not claim these are real shelters, hospitals, or services.
-- **Filter by Needs**: Filter for wheelchair/step-free accessibility, medical staffing, and verified active status.
-- **Flood Safety Warning**: Reminds users to never wade or drive into floodwaters ("Turn Around, Don't Drown").
-
-### 4. Interactive Hazard & Relief Map
-- OpenStreetMap Leaflet layer plotting the user's position, radius boundary, nearby verified shelters, hospitals, and community road blockage warnings.
-
-### 5. Practical Safety Protocols (NDMA, IMD & WHO Aligned)
-- Actionable, scannable guidance for:
-  - **Before**: 72-Hour emergency plan, watertight document storage, pet contingencies.
-  - **During**: Life-safety rules, power shutoffs, avoiding attic traps, escape from submerged vehicles.
-  - **Evacuation**: Safe route decisions and personal essentials.
-  - **Water & Health**: Disinfection protocols (boiling & chlorination), Leptospirosis prevention, electrical risks, and reptile caution.
-  - **Recovery**: Safe return, damage documentation for insurance/relief claims, and mold prevention.
-- All instructions are pre-cached locally for weak network and blackout conditions.
-
-### 6. Preparedness Checklists & Community Hazard Reporting
-- **Personal Go-Bag & Medication Checklist**: Interactive checkboxes with readiness progress tracking saved on-device.
-- **Crowdsource Hazard Submissions**: Submit reports of impassable underpasses or stranded persons, visibly labeled as *UNVERIFIED* until checked by authorities.
-
----
-
-## 🚀 Running the App Locally
+## Getting Started
 
 ### Prerequisites
-- Node.js (v18+)
-- npm
 
-### Quick Start
-```bash
-# 1. Install dependencies (if not already installed)
-npm install
+-   [Node.js](https://nodejs.org/) with npm
+-   [Git](https://git-scm.com/)
 
-# 2. Start the Vite development server
+### 1. Clone the repository
+
+``` bash
+git clone https://github.com/shivani-rajput03/FloodReady.git
+cd FloodReady
+```
+
+If `package.json` is inside the `dm` subfolder, run:
+
+``` bash
+cd dm
+```
+
+Run the following commands from the directory that contains
+`package.json`.
+
+### 2. Install dependencies
+
+``` bash
+npm ci
+```
+
+### 3. Start the development server
+
+``` bash
 npm run dev
 ```
 
-### Production Build
-```bash
+Open the local URL printed in the terminal, usually
+`http://localhost:5173`.
+
+### 4. Build the application
+
+``` bash
 npm run build
+```
+
+If the project defines a preview script, you can preview the build with:
+
+``` bash
 npm run preview
 ```
 
-### Switching Feeds (Live vs. Demo Mode)
-Open the app, tap the **Settings** gear icon in the top header, and choose:
-- **Demo / Simulation Mode**: Demonstrates NDMA/CWC river gauge surges and severe warning conditions.
-- **Open-Meteo Live API**: Connects to live precipitation models and weather telemetry for any GPS coordinate.
+## Using FloodReady
 
+1.  Open the application in your browser.
+2.  Search for a location or grant location permission to use the GPS
+    option, if available.
+3.  Review the weather information, map, and estimated risk level.
+4.  Explore facility categories and safety protocols.
+5.  Use the Go-Bag checklist to track preparedness items.
+6.  Enter hazard details to record a report.
+7.  Use the SOS controls to access helpline shortcuts or prepare a
+    message for a trusted contact.
 
-## Data accuracy notes (updated)
+## Data, Safety & Limitations
 
-- Weather values are requested from the Open-Meteo API. Availability and timestamps depend on the API/network.
-- The LOW/MODERATE/HIGH indicator is a simple app-defined estimate from precipitation values; it is not an official flood warning.
-- The illustrative river/drainage level is simulated and must not be treated as a physical gauge reading.
-- Eight directional cards request weather for approximate points around the selected location and attempt to resolve locality names. Failed weather requests display as unavailable instead of using randomized fallback values.
-- For reliable classroom demonstrations, the nearby facility directory uses local demo fixtures and does not call public Overpass servers. It places clearly labelled fictional sample points around the selected coordinates and calculates illustrative distances. Names, coordinates, addresses, services, accessibility, phone numbers, and availability are not real or verified. Never use these demo points for emergency navigation. For real-world use, replace this demo service with a trusted, verified facility data source.
-- Hazard reports are saved in this browser's local storage only; they are not transmitted to an emergency authority. SOS check-in opens the device's SMS composer for user review and does not dispatch a rescue team.
+-   **Weather-based risk:** The displayed risk is an
+    application-generated estimate based on available weather
+    information. It is not a physical flood-sensor reading and cannot
+    guarantee that a location is safe.
+-   **Facility records:** Facility entries in the current demonstration
+    version may be illustrative sample data. They are not guaranteed to
+    be real, open, or verified. Confirm facilities with official local
+    sources before travelling.
+-   **Hazard reports:** Locally saved reports do not automatically reach
+    emergency responders unless a backend or external integration has
+    been implemented.
+-   **SOS behavior:** The siren is a local sound alert. Opening a
+    messaging application does not send a message automatically; the
+    user must review and send it. These tools do not dispatch rescue
+    teams.
+-   **Location:** GPS behavior depends on device/browser support and
+    user permission. Location may be unavailable or inaccurate.
+-   **Connectivity:** Weather data and map tiles may require an internet
+    connection. Offline availability depends on browser caching and
+    implementation.
+-   **Official instructions:** Follow current alerts and instructions
+    from local emergency authorities.
 
-## Run locally
+## Project Structure
 
-Requires Node.js 22 or newer.
-
-```powershell
-npm ci
-npm run dev
+``` text
+FloodReady/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── services/
+│   ├── types/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.tsx
+├── index.html
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── vite.config.ts
 ```
 
-Open the local URL printed by Vite. To check a production build, run `npm run build`.
+The exact folder layout may vary if the application is stored in a `dm/`
+subdirectory. Use the directory containing `package.json`.
 
-## Weather data interpretation and limitations
+## Author
 
-- Current precipitation, temperature, and humidity are fetched from the Open-Meteo forecast API for the selected coordinates.
-- “Today's Forecast Total” is the API's forecast total for the local calendar day; it is not a rolling trailing-24-hour measurement.
-- “Peak Hourly Forecast (Next 24h)” and the next-24-hour total are calculated from the next 24 complete hourly precipitation forecast values after the API's current-hour timestamp. Compass cards show each point's next-24-hour total; opening a card also shows its local calendar-day total and peak hourly forecast. Missing/incomplete forecast values are shown as unavailable instead of being silently treated as zero.
-- If the API returns an incomplete response or a request fails, the dashboard shows an unavailable/error state instead of silently treating missing values as zero or retaining the previous location's weather values.
-- Directional readings are separate weather-model API requests at eight compass bearings, each approximately 15 km from the selected coordinates. Locality names use best-effort reverse geocoding and may not correspond to an official weather station.
-- The risk label is a simple app-defined estimate based on precipitation thresholds. It is not an official warning and cannot establish that an area is flood-safe. River/gauge readings and nearby facility markers may be illustrative/demo data; verify emergency information with official authorities.
+**Shivani Rajput**\
+Project: FloodReady --- Disaster Management & Emergency Preparedness Web
+Application\
+GitHub: [@shivani-rajput03](https://github.com/shivani-rajput03)
 
+## Future Improvements
 
-## Latest location/weather correctness updates
+Possible future enhancements include verified shelter and hospital data,
+official disaster alerts, a backend for shared hazard reports,
+persistent cloud storage, and authorized emergency-service integrations.
 
-- The eight compass sample points now use spherical destination calculations so the N, NE, E, SE, S, SW, W and NW samples are each approximately 15 km away, including diagonal sectors.
-- If a user quickly switches between locations, slower responses for an earlier location are ignored so they cannot overwrite the latest selection.
-- The UI calls the daily value “Today's Forecast Total” to distinguish a local-calendar-day forecast from a rolling 24-hour total.
+## Contributing
+
+Suggestions and improvements are welcome. When proposing changes,
+consider data accuracy, user privacy, and emergency-safety implications.
+
+## License
+
+No license is currently specified in this repository. Unless a license
+is added, reuse and redistribution remain subject to applicable default
+copyright rules.
